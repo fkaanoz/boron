@@ -47,13 +47,14 @@ xor_operation xo(.xor_in(rp_out), .xor_out(xor_out));
 
 always @(posedge clk) begin
     if(reset == 1'b1) begin
+        STATE <= IDLE;
         current_plain_text <= plain_text;
         current_key <= master_key;
         round_counter <= 0;
-        STATE <= IDLE;
     end else begin
         case(STATE)
             IDLE: begin
+                round_counter <= 0;
                 enc_done <= 1'b0;
                 if(enc_start == 1'b1) begin
                     STATE <= CALCULATE;
