@@ -27,8 +27,8 @@ localparam [1:0] DONE = 2'b11;
 
 
 // var init for comb logic
-wire [63:0] sbox_in;
-wire [63:0] sbox_out;
+wire [63:0] sbl_in;
+wire [63:0] sbl_out;
 wire [63:0] bs_out;
 wire [63:0] rp_out;
 wire [63:0] xor_out;
@@ -37,9 +37,9 @@ wire [63:0] xor_out;
 // init combination logic here !
 enc_key_scheduler ks(.round_counter(round_counter), .KEY(current_key), .NEXT_KEY(next_key));
 
-assign sbox_in = current_key ^ current_plain_text;
+assign sbl_in = current_key ^ current_plain_text;
 
-sbox_layer sl(.sbl_in(sbox_in), .sbl_out(sbl_out));
+sbox_layer sl(.sbl_in(sbl_in), .sbl_out(sbl_out));
 
 block_shuffle bs(.bs_in(sbl_out), .bs_out(bs_out));
 round_permutation rp(.rp_in(bs_out), .rp_out(rp_out));
@@ -65,7 +65,7 @@ always @(posedge clk) begin
 
             CALCULATE: begin
 
-                round_counter <= round_counter <= 1;
+                round_counter <= round_counter + 1;
                 current_key <= next_key;
 
                 current_plain_text <= xor_out;
