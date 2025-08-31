@@ -1,6 +1,6 @@
 ## boron
 
-Verilog implemetation of boron encrytion algorithm.
+Verilog implementation of boron encrytion algorithm.
 
 
 
@@ -9,6 +9,7 @@ Verilog implemetation of boron encrytion algorithm.
 
 
 
+### Lines of Code:
 cloc|github.com/AlDanial/cloc v 1.96  T=0.01 s (2935.0 files/s, 76310.9 lines/s)
 --- | ---
 
