@@ -8,21 +8,22 @@ module encrytion(
     input [79:0] master_key,
     input enc_start,
 
-    output [63:0] cipher_text
-    output enc_done,
+    output reg [63:0] cipher_text,
+    output reg enc_done
 );
 
 reg [79:0] current_key;
-reg [79:0] next_key;
+wire [79:0] next_key;
 reg [63:0] current_plain_text;
 reg [4:0] round_counter;
 
 
-localparam [1:0] STATE;
+reg [1:0] STATE;
 
-localparam [1:0] CALCULATE = 2'b00;
-localparam [1:0] FINAL = 2'b01;
-localparam [1:0] DONE = 2'b10;
+localparam [1:0] IDLE = 2'b00;
+localparam [1:0] CALCULATE = 2'b01;
+localparam [1:0] FINAL = 2'b10;
+localparam [1:0] DONE = 2'b11;
 
 
 // var init for comb logic

@@ -16,6 +16,6 @@ wire [4:0] temp2;
 assign temp2 = KEY[63:59] ^ round_counter;
 
 
-assign PREV_KEY = {KEY[12:4], temp1, KEY[79:64], temp2, KEY[58:13] }
+assign PREV_KEY = {KEY[12:4], temp1, KEY[79:64], temp2, KEY[58:13] };
 
 endmodule

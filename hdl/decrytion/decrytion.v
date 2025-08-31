@@ -8,8 +8,8 @@ module decrytion(
     input [79:0] master_key,
     input dec_start,      // 1-clock high signal to start to dec
 
-    output [63:0] plain_text,
-    output dec_done,
+    output reg [63:0] plain_text,
+    output reg dec_done
 );
 
 
@@ -22,7 +22,7 @@ reg [79:0] next_key;
 reg [79:0] prev_key;
 
 
-localparam [1:0] STATE;
+reg [1:0] STATE;
 
 localparam [1:0] IDLE = 2'b00;
 localparam [1:0] FORWARD = 2'b01;
